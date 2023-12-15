@@ -19,6 +19,7 @@ function resetPassword() {
   passwordRest.textContent = "Password";
   passwordRest.style.color = "";
 }
+var timeout;
 
 //reset copied button
 
@@ -34,8 +35,11 @@ document
     const newPassword = generatRandomPswd(8);
     document.querySelector(".number").textContent = newPassword;
     document.querySelector(".number").style.color = "#FF0000";
+    // Clear time out and assigned new when generate new password
+    clearTimeout(timeout);
+
     // Set a timeout to reset the password after 5 seconds
-    setTimeout(resetPassword, 5000);
+    timeout = setTimeout(resetPassword, 5000);
   });
 
 //On click eventlistner will copy the password.
@@ -50,6 +54,6 @@ document.querySelector(".copyPassword").addEventListener("click", function () {
   document.execCommand("copy");
   document.body.removeChild(textarea);
   document.querySelector(".copyPassword").textContent = "Password copied";
-  // Set a timeout to reset the password after 5 seconds
+  // Set a timeout to reset the password copied to copy password message on button after 4 seconds
   setTimeout(resetCopiedpswd, 4000);
 });
